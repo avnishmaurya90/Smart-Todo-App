@@ -8,6 +8,11 @@ import { useState } from 'react';
 function App() {
   const [todo, setTodo] = useState([]);
   const todHandler = (title, priority, date) => {
+    const isDubplicate = todo.some(t => t.title === title && t.date === date)
+    if (isDubplicate) {
+      alert('Task with same title and due date already exists!');
+      return;
+    }
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const taskDuedate = new Date(date);
